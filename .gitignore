@@ -19,3 +19,9 @@ credentials.csv
 
 # GoLand
 .idea
+
+# 実行ファイル
+aws-s3-json-uploader
+
+# Go Modules
+go.sum
