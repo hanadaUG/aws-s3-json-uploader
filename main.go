@@ -10,6 +10,7 @@ import (
 	"github.com/aws/aws-sdk-go/aws/session"
 	"github.com/aws/aws-sdk-go/service/s3"
 	"log"
+	"time"
 
 	"os"
 
@@ -20,6 +21,7 @@ import (
 type AuthInfo struct {
 	Id       string `json:"id"`
 	Password string `json:"password"`
+	LastUpdated string `json:"updated"`
 }
 
 // aws credentials.csv
@@ -51,7 +53,9 @@ $ aws-s3-json-uploader <id> <password>`
 	}
 
 	// jsonデータを生成します
-	data, _ := json.MarshalIndent(AuthInfo{Id: args[0], Password: args[1]}, "", "\t")
+	t := time.Now()
+	const layout = "20060102"
+	data, _ := json.MarshalIndent(AuthInfo{Id: args[0], Password: args[1],LastUpdated: t.Format(layout)}, "", "\t")
 	fmt.Println(string(data))
 
 	// AWS S3にアクセスするためひ必要なアクセスキーとシークレットキーをcsvから読み込みます
