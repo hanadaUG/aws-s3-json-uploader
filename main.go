@@ -19,9 +19,9 @@ import (
 
 // authentication information
 type AuthInfo struct {
-	Id       string `json:"id"`
+	Id       string `json:"username"`
 	Password string `json:"password"`
-	LastUpdated string `json:"updated"`
+	LastUpdated string `json:"updatedAt"`
 }
 
 // aws credentials.csv
